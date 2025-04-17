@@ -1,43 +1,46 @@
-﻿using Leopotam.Ecs;
+﻿
+using Tags;
+using Components;
 using UnityEngine;
+using Leopotam.Ecs;
 
-namespace NTC.Source.Code.Ecs
+namespace Systems
 {
     sealed class PlayerMouseLookSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerTag> playerFilter = null;
-        private readonly EcsFilter<PlayerTag, ModelComponent, MouseLookDirectionComponent> mouseLookFilter = null;
+        private readonly EcsFilter<PlayerTag> _playerFilter = null;
+        private readonly EcsFilter<PlayerTag, ModelComponent, MouseLookDirectionComponent> _mouseLookFilter = null;
 
-        private Quaternion startTransformRotation;
+        private Quaternion _startTransformRotation;
 
         public void Init()
         {
-            foreach (var i in playerFilter)
+            foreach (var i in _playerFilter)
             {
-                ref var entity = ref playerFilter.GetEntity(i);
+                ref var entity = ref _playerFilter.GetEntity(i);
                 ref var model = ref entity.Get<ModelComponent>();
 
-                startTransformRotation = model.modelTransform.rotation;
+                _startTransformRotation = model.ModelTransform.rotation;
             }
         }
         
         public void Run()
         {
-            foreach (var i in mouseLookFilter)
+            foreach (var i in _mouseLookFilter)
             {
-                ref var model = ref mouseLookFilter.Get2(i);
-                ref var lookComponent = ref mouseLookFilter.Get3(i);
+                ref var model = ref _mouseLookFilter.Get2(i);
+                ref var lookComponent = ref _mouseLookFilter.Get3(i);
 
-                var axisX = lookComponent.direction.x;
-                var axisY = lookComponent.direction.y;
+                var axisX = lookComponent.Direction.x;
+                var axisY = lookComponent.Direction.y;
                 
                 var rotateX = 
-                    Quaternion.AngleAxis(axisX, Vector3.up * Time.deltaTime * lookComponent.mouseSensitivity);
+                    Quaternion.AngleAxis(axisX, Vector3.up * Time.deltaTime * lookComponent.MouseSensitivity);
                 var rotateY = 
-                    Quaternion.AngleAxis(axisY, Vector3.right * Time.deltaTime * lookComponent.mouseSensitivity);
+                    Quaternion.AngleAxis(axisY, Vector3.right * Time.deltaTime * lookComponent.MouseSensitivity);
                 
-                model.modelTransform.rotation = startTransformRotation * rotateX;
-                lookComponent.cameraTransform.rotation = model.modelTransform.rotation * rotateY;
+                model.ModelTransform.rotation = _startTransformRotation * rotateX;
+                lookComponent.CameraTransform.rotation = model.ModelTransform.rotation * rotateY;
             }
         }
     }

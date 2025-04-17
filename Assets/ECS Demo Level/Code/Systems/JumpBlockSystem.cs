@@ -1,18 +1,20 @@
-﻿using Leopotam.Ecs;
+﻿
+using Requests;
 using UnityEngine;
+using Leopotam.Ecs;
 
-namespace NTC.Source.Code.Ecs
+namespace Systems
 {
     sealed class JumpBlockSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<BlockJumpDuration> blockFilter = null;
+        private readonly EcsFilter<BlockJumpDuration> _blockFilter = null;
         
         public void Run()
         {
-            foreach (var i in blockFilter)
+            foreach (var i in _blockFilter)
             {
-                ref var entity = ref blockFilter.GetEntity(i);
-                ref var block = ref blockFilter.Get1(i);
+                ref var entity = ref _blockFilter.GetEntity(i);
+                ref var block = ref _blockFilter.Get1(i);
                 
                 block.Timer -= Time.deltaTime;
                 if (block.Timer <= 0)

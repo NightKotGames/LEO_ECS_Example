@@ -1,4 +1,5 @@
-﻿namespace NTC.Source.Code.Ecs
+﻿
+namespace Requests
 {
     internal struct BlockJumpDuration
     {

@@ -1,4 +1,5 @@
-﻿namespace NTC.Global.Pool
+﻿
+namespace Pool
 {
     public interface IPoolItem
     {

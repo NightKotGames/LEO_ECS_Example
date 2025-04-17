@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using NTC.Global.System;
+﻿
+using System;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using Object = UnityEngine.Object;
+using ProjectSystem;
 
-namespace NTC.Global.Pool
+namespace Pool
 {
-    public static class NightPool
+    public static class PoolInstance
     {
         private static readonly Dictionary<string, Queue<GameObject>> PoolDictionary =
             new Dictionary<string, Queue<GameObject>>(64);
@@ -23,14 +24,14 @@ namespace NTC.Global.Pool
 
         public static void InstallPoolItems(PoolPreset poolPreset)
         {
-            ref var items = ref poolPreset.poolItems;
+            ref var items = ref poolPreset.PoolItems;
             foreach (var poolItem in items)
             {
                 var newPool = new Queue<GameObject>(DefaultPoolCapacity);
                 var poolItemTag = poolItem.Tag;
 
-                for (var i = 0; i < poolItem.size; i++)
-                    InstantiateIntoExistingPool(newPool, poolItem.prefab, poolItemTag);
+                for (var i = 0; i < poolItem.SizePool; i++)
+                    InstantiateIntoExistingPool(newPool, poolItem.Prefab, poolItemTag);
 
                 PoolDictionary.Add(poolItemTag, newPool);
             }

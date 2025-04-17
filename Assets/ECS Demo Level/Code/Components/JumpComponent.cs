@@ -1,10 +1,12 @@
-﻿using System;
+﻿
+using System;
 
-namespace NTC.Source.Code.Ecs
+namespace Components
 {
     [Serializable]
+
     public struct JumpComponent
     {
-        public float force;
+        public float Force;
     }
 }

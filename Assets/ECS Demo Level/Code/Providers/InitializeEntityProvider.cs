@@ -1,6 +1,8 @@
-﻿using Voody.UniLeo;
+﻿
+using Requests;
+using Voody.UniLeo;
 
-namespace NTC.Source.Code.Ecs
+namespace Providers
 {
     public class InitializeEntityProvider : MonoProvider<InitializeEntityRequest> { }
 }

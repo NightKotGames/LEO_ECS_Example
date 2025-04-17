@@ -1,11 +1,13 @@
-﻿using System;
+﻿
+using System;
 using UnityEngine;
 
-namespace NTC.Source.Code.Ecs
+namespace Components
 {
     [Serializable]
+
     public struct ModelComponent
     {
-        public Transform modelTransform;
+        public Transform ModelTransform;
     }
 }

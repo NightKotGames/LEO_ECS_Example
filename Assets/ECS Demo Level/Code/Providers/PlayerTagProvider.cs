@@ -1,6 +1,8 @@
-﻿using Voody.UniLeo;
+﻿
+using Tags;
+using Voody.UniLeo;
 
-namespace NTC.Source.Code.Ecs
+namespace Providers
 {
     public class PlayerTagProvider : MonoProvider<PlayerTag> { }
 }

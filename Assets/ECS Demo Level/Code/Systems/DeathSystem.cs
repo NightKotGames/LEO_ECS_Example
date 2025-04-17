@@ -1,26 +1,28 @@
-﻿using Leopotam.Ecs;
-using NTC.Global.Pool;
+﻿
+using Pool;
+using Tags;
+using Events;
+using Components;
 using UnityEngine;
+using Leopotam.Ecs;
 
-namespace NTC.Source.Code.Ecs
+namespace Systems
 {
     sealed class DeathSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ModelComponent, PerformDeathEvent>.Exclude<IsDeathTag> deathFilter = null;
+        private readonly EcsFilter<ModelComponent, PerformDeathEvent>.Exclude<IsDeathTag> _deathFilter = null;
         
         public void Run()
         {
-            foreach (var i in deathFilter)
+            foreach (var i in _deathFilter)
             {
-                ref var entity = ref deathFilter.GetEntity(i);
-                ref var model = ref deathFilter.Get1(i);
+                ref var entity = ref _deathFilter.GetEntity(i);
+                ref var model = ref _deathFilter.Get1(i);
                 
-                //For default destroy:
-                Object.Destroy(model.modelTransform.gameObject);
+                Object.Destroy(model.ModelTransform.gameObject);
                 entity.Destroy();
-                
-                //For despawn from pool:
-                NightPool.Despawn(model.modelTransform);
+
+                PoolInstance.Despawn(model.ModelTransform);
                 entity.Get<IsDeathTag>();
             }
         }

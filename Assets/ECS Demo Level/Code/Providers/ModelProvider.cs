@@ -1,7 +1,8 @@
 ﻿
+using Components;
 using Voody.UniLeo;
 
-namespace NTC.Source.Code.Ecs
+namespace Providers
 {
     public class ModelProvider : MonoProvider<ModelComponent> { }
 }

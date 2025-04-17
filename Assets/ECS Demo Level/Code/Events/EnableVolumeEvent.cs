@@ -1,4 +1,5 @@
-﻿namespace NTC.Source.Code.Ecs
+﻿
+namespace Events
 {
     internal struct EnableVolumeEvent { }
 }

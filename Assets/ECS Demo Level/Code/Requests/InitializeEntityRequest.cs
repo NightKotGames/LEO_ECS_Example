@@ -1,10 +1,13 @@
-﻿using System;
+﻿
+using System;
+using MonoBehaviors;
 
-namespace NTC.Source.Code.Ecs
+namespace Requests
 {
     [Serializable]
+ 
     public struct InitializeEntityRequest
     {
-        public EntityReference entityReference;
+        public EntityReference EntityReference;
     }
 }

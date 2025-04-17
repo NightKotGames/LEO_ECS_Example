@@ -1,42 +1,39 @@
 ﻿
-using Leopotam.Ecs;
+using Events;
+using Requests;
+using Systems;
 using UnityEngine;
 using Voody.UniLeo;
+using Leopotam.Ecs;
 
-namespace NTC.Source.Code.Ecs
+namespace MonoBehaviors
 {
     public sealed class EcsGameStartupNonURP : MonoBehaviour
     {
-        private EcsWorld world;
-        private EcsSystems systems;
+        private EcsWorld _world;
+        private EcsSystems _systems;
 
         private void Start()
         {
-            world = new EcsWorld();
-            systems = new EcsSystems(world);
+            _world = new EcsWorld();
+            _systems = new EcsSystems(_world);
             
-            systems.ConvertScene();
+            _systems.ConvertScene();
             
             AddInjections();
             AddOneFrames();
             AddSystems();
             
-            systems.Init();
+            _systems.Init();
         }
 
-        private void Update()
-        {
-            systems.Run();
-        }
+        private void Update() => _systems.Run();
 
-        private void AddInjections()
-        {
-            
-        }
+        private void AddInjections() { }
         
         private void AddSystems()
         {
-            systems.
+            _systems.
                 Add(new EntityInitializeSystem()).
                 Add(new JumpBlockSystem()).
                 Add(new CursorLockSystem()).
@@ -54,7 +51,7 @@ namespace NTC.Source.Code.Ecs
 
         private void AddOneFrames()
         {
-            systems.
+            _systems.
                 OneFrame<JumpEvent>().
                 OneFrame<InitializeEntityRequest>()
                 ;
@@ -62,12 +59,13 @@ namespace NTC.Source.Code.Ecs
 
         private void OnDestroy()
         {
-            if (systems == null) return;
+            if (_systems == null) 
+                return;
             
-            systems.Destroy();
-            systems = null;
-            world.Destroy();
-            world = null;
+            _systems.Destroy();
+            _systems = null;
+            _world.Destroy();
+            _world = null;
         }
     }
 }

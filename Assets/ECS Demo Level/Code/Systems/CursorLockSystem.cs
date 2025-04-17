@@ -1,7 +1,8 @@
-﻿using Leopotam.Ecs;
+﻿
 using UnityEngine;
+using Leopotam.Ecs;
 
-namespace NTC.Source.Code.Ecs
+namespace Systems
 {
     sealed class CursorLockSystem : IEcsInitSystem
     {

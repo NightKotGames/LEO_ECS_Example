@@ -1,14 +1,16 @@
-﻿using System;
+﻿
+using System;
 using UnityEngine;
 
-namespace NTC.Source.Code.Ecs
+namespace Components
 {
     [Serializable]
+ 
     public struct GroundCheckSphereComponent
     {
-        public LayerMask groundMask;
-        public Transform groundCheckSphere;
-        public float groundDistance;
-        public bool isGrounded;
+        public LayerMask GroundMask;
+        public Transform GroundCheckSphere;
+        public float GroundDistance;
+        public bool IsGrounded;
     }
 }

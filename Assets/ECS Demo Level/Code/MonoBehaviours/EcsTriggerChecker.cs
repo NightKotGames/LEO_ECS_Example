@@ -1,15 +1,19 @@
-﻿using UnityEngine;
+﻿
+using Requests;
+using Extenstions;
+using UnityEngine;
 using Voody.UniLeo;
 
-namespace NTC.Source.Code.Ecs
+namespace MonoBehaviors
 {
     public class EcsTriggerChecker : MonoBehaviour
     {
-        [SerializeField] private string targetTag = "Player";
+        [SerializeField] private readonly string _targetTag = "Player";
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag(targetTag)) return;
+            if (other.CompareTag(_targetTag) == false) 
+                return;
             
             WorldHandler.GetWorld().SendMessage(new DebugMessageRequest()
             {

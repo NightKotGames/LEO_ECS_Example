@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
-namespace NTC.Source.Code.Ecs
+namespace Components
 {
     public struct DirectionComponent
     {

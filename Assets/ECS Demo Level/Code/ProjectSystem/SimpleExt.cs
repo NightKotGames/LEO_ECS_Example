@@ -1,7 +1,8 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
-namespace NTC.Global.System
+namespace ProjectSystem
 {
     public static class SimpleExt
     {

@@ -1,13 +1,15 @@
-﻿using System;
+﻿
+using System;
 using UnityEngine;
 
-namespace NTC.Source.Code.Ecs
+namespace Components
 {
     [Serializable]
+
     public struct MouseLookDirectionComponent
     {
-        public Transform cameraTransform;
-        [HideInInspector] public Vector2 direction;
-        [Range(0, 2)] public float mouseSensitivity;
+        public Transform CameraTransform;
+        [HideInInspector] public Vector2 Direction;
+        [Range(0, 2)] public float MouseSensitivity;
     }
 }

@@ -1,6 +1,8 @@
-﻿using Voody.UniLeo;
+﻿
+using Components;
+using Voody.UniLeo;
 
-namespace NTC.Source.Code.Ecs
+namespace Providers
 {
-    public class DirectionProvider : MonoProvider<DirectionComponent> { }
+    public class DirectionProvider : MonoProvider<DirectionComponent> { }    
 }

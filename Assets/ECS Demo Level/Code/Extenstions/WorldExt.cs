@@ -1,6 +1,7 @@
-﻿using Leopotam.Ecs;
+﻿
+using Leopotam.Ecs;
 
-namespace NTC.Source.Code.Ecs
+namespace Extenstions
 {
     public static class WorldExt
     {
